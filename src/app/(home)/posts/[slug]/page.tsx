@@ -1,20 +1,30 @@
 import { getPostBySlug } from "@/actions/get-post-by-slug"
 import { Badge } from "@/components/ui/badge";
 import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character";
-import Image from "next/image";
-import MainImage from "@/../public/main-blog.jpg"
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
-import { CategoryBadge } from "@/components/category-badge";
 import { HeadingImage } from "@/components/heading-image";
-import { BackToHomepageButton } from "../components/back-to-homepage-button";
+import { Breadcrumbs } from "@/components/bradcrumbs";
+import { Metadata } from "next";
 
 interface PostPageProps {
     params: {
         slug: string
     }
+}
+
+export async function generateMetadata(
+    { params }: PostPageProps
+): Promise<Metadata> {
+    const postSlug = params.slug
+
+    const post = await getPostBySlug({
+        slug: postSlug
+    })
+
+    return {
+        title: uppercaseFirstCharacter(post.title)
+    }
+
 }
 
 export default async function PostPage({ params }: PostPageProps) {
@@ -29,7 +39,7 @@ export default async function PostPage({ params }: PostPageProps) {
     return (
         <section className="flex flex-col items-start w-full max-w-[720px]">
 
-            <BackToHomepageButton />
+            <Breadcrumbs />
 
             <HeadingImage categories={post.categories} />
 

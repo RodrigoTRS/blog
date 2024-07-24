@@ -20,7 +20,12 @@ interface FetchLatestPostsRequest {
     perPage: number
 }
 
-export async function fetchLatestPosts({ page, perPage}: FetchLatestPostsRequest) {
+export async function fetchLatestPosts({ page, perPage }: FetchLatestPostsRequest) {
     const response = await api.get<PostResponse[]>(`/posts?_sort=createdAt&_order=asc&_page=${page}&_limit=${perPage}`)
-    return response.data
+    return {
+        page,
+        perPage,
+        totalCount: 10,
+        posts: response.data
+    }
 }

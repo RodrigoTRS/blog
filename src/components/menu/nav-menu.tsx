@@ -23,15 +23,13 @@ export async function Navmenu({ orientation, onlyDesktop = false, horizontalAlig
             ? "flex flex-col gap-2" 
             : "flex flex-row items-center gap-6"
         )}>
-            {
-                menuOptions.map(({ title, slug }) => {
-                    return (
-                        <Navlink href={slug} key={title}>
-                            {title}
-                        </Navlink>
-                    )
-                })
-            }
+            {menuOptions.map(({ title, slug }) => {
+                return (
+                    <Navlink href={`/${slug}`} key={title}>
+                        {title}
+                    </Navlink>
+                )
+            })}
         </nav>
     )
 }

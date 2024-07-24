@@ -25,7 +25,7 @@ export function MainPostLoading() {
                     <Skeleton className="w-[120px] h-[40px] rounded-md bg-primary"/>
                     <Skeleton className="w-[80px] h-[40px] rounded-md"/>
                 </div>
-                    <Skeleton className="w-[120px] h-[20px] rounded-md"/>
+                <Skeleton className="w-[120px] h-[20px] rounded-md"/>
             </div>
         </div>
     )

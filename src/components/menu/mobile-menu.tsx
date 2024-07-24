@@ -21,8 +21,7 @@ export async function MobileMenu(props: ButtonProps) {
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent>
-                    {
-                        menuOptions.map(({ title, slug }) => {
+                    {menuOptions.map(({ title, slug }) => {
                             return (
                                 <DropdownMenuItem
                                     asChild

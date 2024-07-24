@@ -19,6 +19,7 @@ export async function Categories() {
                             title={title}
                             slug={slug}
                             variant="outline"
+                            key={title}
                         />
                     )})
                 }

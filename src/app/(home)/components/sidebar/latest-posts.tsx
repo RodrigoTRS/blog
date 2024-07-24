@@ -6,21 +6,21 @@ import Link from "next/link"
 
 
 export async function LatestPosts() {
-    const latestPosts = await fetchLatestPosts({
+    const { posts } = await fetchLatestPosts({
         page: 1,
         perPage: 5
     })
 
     return (
-        <Card className="flex flex-col gap-6 p-6 bg-background">
+        <Card className="flex flex-col gap-6 p-6">
             <h2 className="text-2xl font-bold text-primary">
                 Latest posts
             </h2>
 
             <ul className="flex flex-col gap-2">
-                {latestPosts.map(({title, slug}, index) => {
+                {posts.map(({title, slug}, index) => {
                     const postLink = `posts/${slug}`
-                    const isLastItem = index === latestPosts.length -1
+                    const isLastItem = index === posts.length -1
 
                     return  (
                         <li key={title}>

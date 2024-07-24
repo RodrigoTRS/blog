@@ -69,7 +69,7 @@ function generatePostsObject(count) {
     return posts
 }
 
-const menu_options = generateMenuOptions(["Home", "Latest", "Trending", "Posts"])
+const menu_options = generateMenuOptions(["Home", "Posts"])
 const categories = generateCategoriesObject(numberOfCategories)
 const posts = generatePostsObject(numberOfPosts)
 
