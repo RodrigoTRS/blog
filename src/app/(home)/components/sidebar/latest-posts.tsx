@@ -1,5 +1,6 @@
 import { fetchLatestPosts } from "@/actions/fetch-latest-posts"
 import { Separator } from "@/components/ui/separator"
+import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character"
 import Link from "next/link"
 
 
@@ -23,7 +24,7 @@ export async function LatestPosts() {
                     return  (
                         <li key={title}>
                             <Link href={postLink} className="block hover:text-primary py-2">
-                                {title}
+                                {uppercaseFirstCharacter(title)}
                             </Link>
                             {!isLastItem && <Separator/>}
                         </li>

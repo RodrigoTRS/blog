@@ -1,9 +1,25 @@
-import { generateSlug } from "../utils/generate-slug.js"
+import { generateSlug } from "./generate-slug.js"
 import { faker } from "@faker-js/faker"
 import fs from "fs"
 
 const numberOfPosts = 10
 const numberOfCategories = 10
+
+function generateMenuOptions(optionsArray) {
+    const menuOptions = []
+
+
+    optionsArray.map((option) => {
+        const menuOption = {
+            title: option,
+            slug: option === "Home" ? "/" : generateSlug(option)
+        }
+
+        menuOptions.push(menuOption)
+    })
+
+    return menuOptions
+}
 
 function generateCategoriesObject(count) {
     const categories = []
@@ -24,6 +40,7 @@ function generateCategoriesObject(count) {
 
 function createRandomPost() {
     const postFields = {
+        id: faker.string.uuid(),
         title: faker.word.words(5),
         categories: [
             categories[faker.number.int({ min: 0, max: numberOfCategories - 1})],
@@ -42,7 +59,6 @@ function createRandomPost() {
     return post
 }
 
-
 function generatePostsObject(count) {
     const posts = []
 
@@ -53,14 +69,16 @@ function generatePostsObject(count) {
     return posts
 }
 
+const menu_options = generateMenuOptions(["Home", "Latest", "Trending"])
 const categories = generateCategoriesObject(numberOfCategories)
 const posts = generatePostsObject(numberOfPosts)
 
 posts[0].isMain = true
 
 const apiObject = {
-    posts,
-    categories
+    menu_options,
+    categories,
+    posts
 }
 
 const apiJSON = JSON.stringify(apiObject, null, 2)

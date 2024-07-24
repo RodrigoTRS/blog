@@ -1,10 +1,12 @@
 import { Menu } from "lucide-react";
-import { Button, ButtonProps } from "./ui/button";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "./ui/dropdown-menu";
 import Link from "next/link";
-import { MenuOptions } from "./nav-menu";
+import { fetchMenuOptions } from "@/actions/fetch-menu-options";
+import { Button, ButtonProps } from "../ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
-export function MobileMenu(props: ButtonProps) {
+export async function MobileMenu(props: ButtonProps) {
+    const menuOptions = await fetchMenuOptions();
+
     return (
         <div className="block lg:hidden">
             <DropdownMenu>
@@ -20,14 +22,14 @@ export function MobileMenu(props: ButtonProps) {
 
                 <DropdownMenuContent>
                     {
-                        MenuOptions.map(({ title, path }) => {
+                        menuOptions.map(({ title, slug }) => {
                             return (
                                 <DropdownMenuItem
                                     asChild
                                     className="cursor-pointer hover:text-muted-foreground"
                                     key={title}
                                 >
-                                    <Link href={path}>
+                                    <Link href={slug}>
                                         {title}
                                     </Link>
                                 </DropdownMenuItem>

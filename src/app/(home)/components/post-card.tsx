@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character";
 
 interface PostCardProps {
     post: {
@@ -17,11 +18,12 @@ interface PostCardProps {
         slug: string,
         createdAt: Date,
         isMain: boolean
-    }
+    },
+    index: number
 }
 
-export function PostCard({ post }: PostCardProps) {
-    const customExcerpt = post.content.substring(0, 197) + "..."
+export function PostCard({ post, index }: PostCardProps) {
+    const customExcerpt = post.content.substring(0, 97) + "..."
     const postLink = `posts/${post.slug}`
     const formattedDate = new Date(post.createdAt).toDateString()
 
@@ -32,6 +34,7 @@ export function PostCard({ post }: PostCardProps) {
                 src={MainImage}
                 alt="Main Image"
                 className="rounded-md relative"
+                priority={index < 3}
             />
 
             <div className="flex items-center justify-start gap-2 select-none absolute mt-4 ml-4">
@@ -41,23 +44,24 @@ export function PostCard({ post }: PostCardProps) {
                             variant="default"
                             key={category.title}
                         >
-                            {category.title}
+                            {uppercaseFirstCharacter(category.title)}
                         </Badge>
                     )
                 })}
             </div>
 
-            <div className="p-6 flex flex-col gap-4">
+            <div className="flex flex-col justify-between p-6 min-h-[260px]">
+                <div className="flex flex-col gap-2">
+                    <Link href={postLink} className="hover:text-primary ">
+                        <h4 className="text-xl font-medium leading-normal">
+                            {uppercaseFirstCharacter(post.title)}
+                        </h4>
+                    </Link>
 
-                <Link href={postLink} className="hover:text-primary ">
-                    <h4 className="text-xl font-medium leading-normal">
-                        {post.title}
-                    </h4>
-                </Link>
+                    <p className="text-md text-muted-foreground">{uppercaseFirstCharacter(customExcerpt)}</p>
+                </div>
 
-                <p className="text-md text-muted-foreground">{customExcerpt}</p>
-
-                <div className="flex items-center justify-between w-full mt-6">
+                <div className="flex items-center w-full">
                     <div className="flex items-center gap-2">
                         <Button variant="default" asChild>
                             <Link href={postLink}>

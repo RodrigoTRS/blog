@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Header } from "@/components/header";
 import "../globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Footer } from "@/components/footer";
 
 const font = Poppins({ weight: ["400", "600"], subsets: ["latin"]});

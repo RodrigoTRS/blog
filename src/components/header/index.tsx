@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { ModeToggle } from "./mode-toggle";
-import { Button } from "./ui/button";
-import { Logo } from "./logo";
-import { Navmenu } from "./nav-menu";
-import { MobileMenu } from "./mobile-menu";
+import { ModeToggle } from "../theme/mode-toggle";
+import { Button } from "../ui/button";
+import { Logo } from "../logo";
+import { Navmenu } from "../menu/nav-menu";
+import { MobileMenu } from "../menu/mobile-menu";
 
 export function Header() {
     return (
@@ -14,7 +14,10 @@ export function Header() {
                 </Link>
 
                 <div className="flex gap-8">
-                    <Navmenu orientation="horizontal"/>
+                    <Navmenu
+                        orientation="horizontal"
+                        onlyDesktop
+                    />
                     
                     <div className="flex items-center justify-center gap-4">
                         <Button

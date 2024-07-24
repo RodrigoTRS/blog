@@ -4,44 +4,61 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getMainPost } from "@/actions/get-main-post";
+import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character";
+import { MainPostLoading } from "./loading";
 
-export async function MainPost() {
+interface MainPostProps {
+    isLoading?: boolean
+}
+
+export async function MainPost({ isLoading = false }: MainPostProps) {
     const post = await getMainPost()
 
     const customExcerpt = post.content.substring(0, 197) + "..."
     const postLink = `posts/${post.slug}`
     const formattedDate = new Date(post.createdAt).toDateString()
 
+    if (isLoading) {
+        return (
+            <MainPostLoading />
+        )
+    }
     return (
         <div className="flex flex-col gap-2 items-start max-w-[720px] relative">
             
             <div className="flex items-center justify-start gap-2 select-none absolute left-4 top-4 z-10">
-                {post.categories.map((category) => {
-                    return (
-                        <Badge
-                            variant="default"
-                            key={category.title}
-                        >
-                            {category.title}
-                        </Badge>
-                    )
-                })}
+                {
+                    (post.categories.map((category) => {
+                            return (
+                                <Badge
+                                    variant="default"
+                                    key={category.title}
+                                >
+                                    {uppercaseFirstCharacter(category.title)}
+                                </Badge>
+                            )
+                        }
+                    ))
+                }
+                
             </div>
 
+        
             <Image
                 src={MainImage}
                 alt="Main Image"
-                className="rounded-md mb-6 relative"
+                className="rounded-md relative"
+                priority
             />
-
+        
 
             <Link href={postLink} className="hover:text-primary">
-                <h3 className="text-3xl font-medium leading-normal mt-2">
-                    {post.title}
+                <h3 className="text-3xl font-medium leading-normal mt-8">
+                    {uppercaseFirstCharacter(post.title)}
                 </h3>
             </Link>
 
-            <p className="text-md text-muted-foreground">{customExcerpt}</p>
+            <p className="text-md text-muted-foreground">{uppercaseFirstCharacter(customExcerpt)}</p>
 
             <div className="flex items-center justify-between w-full mt-6">
                 <div className="flex items-center gap-2">

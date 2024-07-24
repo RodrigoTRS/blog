@@ -10,25 +10,25 @@ export default async function Home() {
   })
 
   return (
-    <section className="w-full grid grid-cols-1 lg:grid-cols-3">
-      <div className="flex flex-col w-full items-center justify-center lg:border-r lg:col-span-2 lg:pr-12">
+    <section className="w-full grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div className="flex flex-col w-full items-center justify-center lg:col-span-2">
         <MainPost />
 
         <Separator className="my-6"/>
 
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="w-full max-w-[720px] grid grid-cols-1 lg:grid-cols-2 gap-6">
           {
-            posts.map((post) => {
+            posts.map((post, index) => {
               return (
                 <PostCard
                   key={post.id}
                   post={post}
+                  index={index}
                 />
               )
             })
           }
         </div>
-
       </div>
 
       <Sidebar />

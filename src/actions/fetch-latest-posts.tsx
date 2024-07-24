@@ -15,22 +15,12 @@ interface PostResponse {
     isMain: boolean
 }
 
-interface PostApiResponse {
-    first: number,
-    prev: number | null,
-    next: number | null,
-    last: number,
-    pages: number,
-    items: number,
-    data: PostResponse[]
-}
-
 interface FetchLatestPostsRequest {
     page: number,
     perPage: number
 }
 
 export async function fetchLatestPosts({ page, perPage}: FetchLatestPostsRequest) {
-    const response = await api.get<PostApiResponse>(`/posts?_sort=-createdAt&_page=${page}&_per_page=${perPage}`)
-    return response.data.data
+    const response = await api.get<PostResponse[]>(`/posts?_sort=createdAt&_order=asc&_page=${page}&_limit=${perPage}`)
+    return response.data
 }
