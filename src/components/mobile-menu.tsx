@@ -22,7 +22,11 @@ export function MobileMenu(props: ButtonProps) {
                     {
                         MenuOptions.map(({ title, path }) => {
                             return (
-                                <DropdownMenuItem asChild className="cursor-pointer hover:text-muted-foreground">
+                                <DropdownMenuItem
+                                    asChild
+                                    className="cursor-pointer hover:text-muted-foreground"
+                                    key={title}
+                                >
                                     <Link href={path}>
                                         {title}
                                     </Link>

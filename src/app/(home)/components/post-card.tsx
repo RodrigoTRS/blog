@@ -5,21 +5,28 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
-const post = {
-    slug: "/lorem-ipsum-dolor-sit-amet",
-    categories: ["Tech", "Programming"],
-    title: "Lorem ipsum dolor sit amet is simply dummy text of the printing",
-    excerpt: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    createdAt: new Date()
+interface PostCardProps {
+    post: {
+        id: string,
+        title: string
+        categories: {
+            title: string,
+            slug: string
+        }[],
+        content: string,
+        slug: string,
+        createdAt: Date,
+        isMain: boolean
+    }
 }
 
-export function PostCard() {
-    const customExcerpt = post.excerpt.substring(0, 197) + "..."
+export function PostCard({ post }: PostCardProps) {
+    const customExcerpt = post.content.substring(0, 197) + "..."
     const postLink = `posts/${post.slug}`
-    const formattedDate = post.createdAt.toDateString()
+    const formattedDate = new Date(post.createdAt).toDateString()
 
     return (
-        <Card className="flex flex-col gap-2">
+        <Card className="flex flex-col gap-2 max-w-[720px]">
 
             <Image
                 src={MainImage}
@@ -30,8 +37,11 @@ export function PostCard() {
             <div className="flex items-center justify-start gap-2 select-none absolute mt-4 ml-4">
                 {post.categories.map((category) => {
                     return (
-                        <Badge variant="default" key={category}>
-                            {category}
+                        <Badge
+                            variant="default"
+                            key={category.title}
+                        >
+                            {category.title}
                         </Badge>
                     )
                 })}

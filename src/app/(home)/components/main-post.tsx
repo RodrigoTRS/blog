@@ -3,28 +3,26 @@ import MainImage from "@/../public/main-blog.jpg"
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { getMainPost } from "@/actions/get-main-post";
 
-const post = {
-    slug: "/lorem-ipsum-dolor-sit-amet",
-    categories: ["Tech", "Programming"],
-    title: "Lorem ipsum dolor sit amet is simply dummy text of the printing",
-    excerpt: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    createdAt: new Date()
-}
+export async function MainPost() {
+    const post = await getMainPost()
 
-export function MainPost() {
-    const customExcerpt = post.excerpt.substring(0, 197) + "..."
+    const customExcerpt = post.content.substring(0, 197) + "..."
     const postLink = `posts/${post.slug}`
-    const formattedDate = post.createdAt.toDateString()
+    const formattedDate = new Date(post.createdAt).toDateString()
 
     return (
-        <div className="flex flex-col gap-2 col-span-2 items-center max-w-[720px] relative">
-
+        <div className="flex flex-col gap-2 items-start max-w-[720px] relative">
+            
             <div className="flex items-center justify-start gap-2 select-none absolute left-4 top-4 z-10">
                 {post.categories.map((category) => {
                     return (
-                        <Badge variant="default" key={category}>
-                            {category}
+                        <Badge
+                            variant="default"
+                            key={category.title}
+                        >
+                            {category.title}
                         </Badge>
                     )
                 })}

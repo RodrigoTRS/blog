@@ -32,7 +32,7 @@ export function Navmenu({ orientation }: NavmenuProps) {
             {
                 MenuOptions.map(({ title, path }) => {
                     return (
-                        <Navlink href={path}>
+                        <Navlink href={path} key={title}>
                             {title}
                         </Navlink>
                     )
