@@ -3,6 +3,7 @@ import MainImage from "@/../public/main-blog.jpg"
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const post = {
     slug: "/lorem-ipsum-dolor-sit-amet",
@@ -12,18 +13,18 @@ const post = {
     createdAt: new Date()
 }
 
-export function MainPost() {
+export function PostCard() {
     const customExcerpt = post.excerpt.substring(0, 197) + "..."
     const postLink = `posts/${post.slug}`
     const formattedDate = post.createdAt.toDateString()
 
     return (
-        <div className="flex flex-col gap-2 col-span-2">
+        <Card className="flex flex-col gap-2">
 
             <Image
                 src={MainImage}
                 alt="Main Image"
-                className="rounded-md mb-6 relative"
+                className="rounded-md relative"
             />
 
             <div className="flex items-center justify-start gap-2 select-none absolute mt-4 ml-4">
@@ -36,31 +37,32 @@ export function MainPost() {
                 })}
             </div>
 
-            <Link href={postLink} className="hover:text-rose-500 ">
-                <h3 className="text-3xl font-medium leading-normal mt-2">
-                    {post.title}
-                </h3>
-            </Link>
+            <div className="p-6 flex flex-col gap-4">
 
-            <p className="text-md text-muted-foreground">{customExcerpt}</p>
+                <Link href={postLink} className="hover:text-rose-500 ">
+                    <h4 className="text-xl font-medium leading-normal">
+                        {post.title}
+                    </h4>
+                </Link>
 
-            <div className="flex items-center justify-between w-full mt-6">
-                <div className="flex items-center gap-2">
-                    <Button variant="default" asChild>
-                        <Link href={postLink}>
-                            Read more
-                        </Link>
-                    </Button>
-                    <Button variant="outline" asChild>
-                        <Link href={postLink}>
-                            Share
-                        </Link>
-                    </Button>
+                <p className="text-md text-muted-foreground">{customExcerpt}</p>
+
+                <div className="flex items-center justify-between w-full mt-6">
+                    <div className="flex items-center gap-2">
+                        <Button variant="default" asChild>
+                            <Link href={postLink}>
+                                Read more
+                            </Link>
+                        </Button>
+                        <Button variant="outline" asChild>
+                            <Link href={postLink}>
+                                Share
+                            </Link>
+                        </Button>
+                    </div>
                 </div>
-                <Badge variant="outline">
-                    {formattedDate}
-                </Badge>
+                
             </div>
-        </div>
+        </Card>
     )
 }

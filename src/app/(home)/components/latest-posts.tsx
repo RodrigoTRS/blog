@@ -23,21 +23,21 @@ export function LatestPosts() {
                 Latest posts
             </h2>
 
-            <div className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-2">
                 {latestPost.map(({title, slug}, index) => {
                     const postLink = `posts/${slug}`
                     const isLastItem = index === latestPost.length -1
 
                     return  (
-                        <>
-                            <Link href={postLink} className="block hover:text-rose-500">
+                        <li key={index}>
+                            <Link href={postLink} className="block hover:text-rose-500 py-2">
                                 {title}
                             </Link>
                             {!isLastItem && <Separator/>}
-                        </>
+                        </li>
                     )})
                 }
-            </div>
+            </ul>
         </div>
     )
 }

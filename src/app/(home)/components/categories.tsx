@@ -31,11 +31,11 @@ export function Categories() {
                 Categories
             </h2>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-2">
                 {categories.map(({title, slug}, index) => {
                     const categoryLink = `categories/${slug}`
                     return  (
-                        <Badge variant="secondary" className="hover:bg-rose-500 hover:text-white">
+                        <Badge variant="secondary" className="hover:bg-rose-500 hover:text-white" key={index}>
                             <Link href={categoryLink}>
                                 {title}
                             </Link>
