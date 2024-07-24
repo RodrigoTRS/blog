@@ -1,4 +1,5 @@
 import { fetchCategories } from "@/actions/fetch-categories"
+import { CategoryBadge } from "@/components/category-badge"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 
@@ -13,18 +14,12 @@ export async function Categories() {
 
             <div className="flex flex-wrap gap-2">
                 {categories.map(({title, slug}) => {
-                    const categoryLink = `categories/${slug}`
-
                     return  (
-                        <Badge
-                            variant="secondary"
-                            className="hover:bg-primary hover:text-white"
-                            key={title}
-                        >
-                            <Link href={categoryLink}>
-                                {title}
-                            </Link>
-                        </Badge>
+                        <CategoryBadge
+                            title={title}
+                            slug={slug}
+                            variant="outline"
+                        />
                     )})
                 }
             </div>

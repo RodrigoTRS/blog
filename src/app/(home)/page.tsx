@@ -18,12 +18,11 @@ export default async function Home() {
 
         <div className="w-full max-w-[720px] grid grid-cols-1 lg:grid-cols-2 gap-6">
           {
-            posts.map((post, index) => {
+            posts.map((post) => {
               return (
                 <PostCard
                   key={post.id}
                   post={post}
-                  index={index}
                 />
               )
             })

@@ -17,8 +17,8 @@ export async function Navmenu({ orientation, onlyDesktop = false, horizontalAlig
             "justify-center",
             onlyDesktop && "hidden lg:flex",
             horizontalAlign === "left"
-            ? "items-end"
-            : "items-start",
+            ? "items-start"
+            : "lg:items-end",
             orientation === "vertical"
             ? "flex flex-col gap-2" 
             : "flex flex-row items-center gap-6"

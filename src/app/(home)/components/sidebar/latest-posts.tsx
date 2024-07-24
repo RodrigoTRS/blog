@@ -1,4 +1,5 @@
 import { fetchLatestPosts } from "@/actions/fetch-latest-posts"
+import { Card } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character"
 import Link from "next/link"
@@ -11,7 +12,7 @@ export async function LatestPosts() {
     })
 
     return (
-        <div className="flex flex-col gap-6">
+        <Card className="flex flex-col gap-6 p-6 bg-background">
             <h2 className="text-2xl font-bold text-primary">
                 Latest posts
             </h2>
@@ -31,6 +32,6 @@ export async function LatestPosts() {
                     )})
                 }
             </ul>
-        </div>
+        </Card>
     )
 }

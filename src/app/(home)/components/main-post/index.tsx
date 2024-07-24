@@ -1,11 +1,10 @@
-import Image from "next/image";
-import MainImage from "@/../public/main-blog.jpg"
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getMainPost } from "@/actions/get-main-post";
 import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character";
 import { MainPostLoading } from "./loading";
+import { HeadingImage } from "@/components/heading-image";
 
 interface MainPostProps {
     isLoading?: boolean
@@ -15,7 +14,7 @@ export async function MainPost({ isLoading = false }: MainPostProps) {
     const post = await getMainPost()
 
     const customExcerpt = post.content.substring(0, 197) + "..."
-    const postLink = `posts/${post.slug}`
+    const postLink = `/posts/${post.slug}`
     const formattedDate = new Date(post.createdAt).toDateString()
 
     if (isLoading) {
@@ -23,34 +22,11 @@ export async function MainPost({ isLoading = false }: MainPostProps) {
             <MainPostLoading />
         )
     }
+
     return (
         <div className="flex flex-col gap-2 items-start max-w-[720px] relative">
             
-            <div className="flex items-center justify-start gap-2 select-none absolute left-4 top-4 z-10">
-                {
-                    (post.categories.map((category) => {
-                            return (
-                                <Badge
-                                    variant="default"
-                                    key={category.title}
-                                >
-                                    {uppercaseFirstCharacter(category.title)}
-                                </Badge>
-                            )
-                        }
-                    ))
-                }
-                
-            </div>
-
-        
-            <Image
-                src={MainImage}
-                alt="Main Image"
-                className="rounded-md relative"
-                priority
-            />
-        
+           <HeadingImage categories={post.categories} />
 
             <Link href={postLink} className="hover:text-primary">
                 <h3 className="text-3xl font-medium leading-normal mt-8">
