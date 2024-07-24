@@ -26,7 +26,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="flex flex-col min-h-screen items-center p-4">
+          <main className="flex flex-col min-h-screen items-center p-8 py-4 lg:p-4">
             <div className="flex flex-col w-full max-w-[1120px] items-start py-10">
               {children}
             </div>

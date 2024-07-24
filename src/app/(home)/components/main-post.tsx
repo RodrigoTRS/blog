@@ -18,15 +18,9 @@ export function MainPost() {
     const formattedDate = post.createdAt.toDateString()
 
     return (
-        <div className="flex flex-col gap-2 col-span-2">
+        <div className="flex flex-col gap-2 col-span-2 items-center max-w-[720px] relative">
 
-            <Image
-                src={MainImage}
-                alt="Main Image"
-                className="rounded-md mb-6 relative"
-            />
-
-            <div className="flex items-center justify-start gap-2 select-none absolute mt-4 ml-4">
+            <div className="flex items-center justify-start gap-2 select-none absolute left-4 top-4 z-10">
                 {post.categories.map((category) => {
                     return (
                         <Badge variant="default" key={category}>
@@ -36,7 +30,14 @@ export function MainPost() {
                 })}
             </div>
 
-            <Link href={postLink} className="hover:text-rose-500 ">
+            <Image
+                src={MainImage}
+                alt="Main Image"
+                className="rounded-md mb-6 relative"
+            />
+
+
+            <Link href={postLink} className="hover:text-primary">
                 <h3 className="text-3xl font-medium leading-normal mt-2">
                     {post.title}
                 </h3>

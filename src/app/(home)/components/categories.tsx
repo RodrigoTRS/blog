@@ -27,7 +27,7 @@ const categories = [
 export function Categories() {
     return (
         <div className="flex flex-col gap-6">
-            <h2 className="text-2xl font-bold text-rose-500">
+            <h2 className="text-2xl font-bold text-primary">
                 Categories
             </h2>
 
@@ -35,7 +35,7 @@ export function Categories() {
                 {categories.map(({title, slug}, index) => {
                     const categoryLink = `categories/${slug}`
                     return  (
-                        <Badge variant="secondary" className="hover:bg-rose-500 hover:text-white" key={index}>
+                        <Badge variant="secondary" className="hover:bg-primary hover:text-white" key={index}>
                             <Link href={categoryLink}>
                                 {title}
                             </Link>

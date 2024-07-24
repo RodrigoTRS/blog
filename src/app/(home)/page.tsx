@@ -1,22 +1,21 @@
-import { Button } from "@/components/ui/button";
 import { MainPost } from "./components/main-post";
-import { LatestPosts } from "./components/latest-posts";
-import { Categories } from "./components/categories";
 import { PostCard } from "./components/post-card";
 import { Separator } from "@/components/ui/separator";
 import { Sidebar } from "./components/sidebar";
 
 export default function Home() {
   return (
-    <section className="grid grid-cols-3">
-      <div className="flex flex-col border-r col-span-2 pr-12">
-        <div className="grid grid-cols-2 gap-6">
+    <section className="flex flex-col gap-12 lg:grid lg:grid-cols-3">
+
+      <div className="lg:border-r lg:col-span-2 lg:pr-12">
+        <div className="flex flex-col items-center gap-6 lg:grid lg:grid-cols-2">
         <MainPost />
-        <Separator className="col-span-2 my-6"/>
+        <Separator className="lg:col-span-2 my-6"/>
         <PostCard />
         <PostCard />
         </div>
       </div>
+
       <Sidebar />
     </section>
   );

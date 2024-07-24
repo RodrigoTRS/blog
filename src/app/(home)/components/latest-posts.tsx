@@ -19,7 +19,7 @@ const latestPost = [
 export function LatestPosts() {
     return (
         <div className="flex flex-col gap-6">
-            <h2 className="text-2xl font-bold text-rose-500">
+            <h2 className="text-2xl font-bold text-primary">
                 Latest posts
             </h2>
 
@@ -30,7 +30,7 @@ export function LatestPosts() {
 
                     return  (
                         <li key={index}>
-                            <Link href={postLink} className="block hover:text-rose-500 py-2">
+                            <Link href={postLink} className="block hover:text-primary py-2">
                                 {title}
                             </Link>
                             {!isLastItem && <Separator/>}

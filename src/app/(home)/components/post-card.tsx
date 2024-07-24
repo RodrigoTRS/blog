@@ -39,7 +39,7 @@ export function PostCard() {
 
             <div className="p-6 flex flex-col gap-4">
 
-                <Link href={postLink} className="hover:text-rose-500 ">
+                <Link href={postLink} className="hover:text-primary ">
                     <h4 className="text-xl font-medium leading-normal">
                         {post.title}
                     </h4>

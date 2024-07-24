@@ -3,6 +3,7 @@ import { ModeToggle } from "./mode-toggle";
 import { Button } from "./ui/button";
 import { Logo } from "./logo";
 import { Navmenu } from "./nav-menu";
+import { MobileMenu } from "./mobile-menu";
 
 export function Header() {
     return (
@@ -13,15 +14,16 @@ export function Header() {
                 </Link>
 
                 <div className="flex gap-8">
-                    <Navmenu />
+                    <Navmenu orientation="horizontal"/>
                     
-                    <div className="flex items-center justify-center gap-2">
+                    <div className="flex items-center justify-center gap-4">
                         <Button
                             variant="default"
                             className="font-bold"
-                        >
+                            >
                             Contact
                         </Button>
+                        <MobileMenu/>
                         <ModeToggle />
                     </div>
                 </div>
