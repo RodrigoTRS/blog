@@ -4,14 +4,14 @@ import { Button } from "@/components/ui/button";
 import { getMainPost } from "@/actions/get-main-post";
 import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character";
 import { MainPostLoading } from "./loading";
-import { HeadingImage } from "@/components/heading-image";
+import { HeadingImage } from "@/app/(home)/components/heading-image";
 
 interface MainPostProps {
     isLoading?: boolean
 }
 
 export async function MainPost({ isLoading = false }: MainPostProps) {
-    const post = await getMainPost()
+     const post = await getMainPost()
 
     const customExcerpt = post.content.substring(0, 197) + "..."
     const postLink = `/posts/${post.slug}`

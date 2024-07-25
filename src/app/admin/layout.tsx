@@ -1,9 +1,9 @@
 import "../globals.css";
 
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { Header } from "./components/header";
+import { Poppins } from "next/font/google";
+import { Sidebar } from "./components/sidebar";
 
 const font = Poppins({ weight: ["400", "600"], subsets: ["latin"]});
 
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Admin | Personal Blog",
 };
 
-export default function AdminLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -25,10 +25,12 @@ export default function AdminLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          <main className="flex flex-col min-h-screen items-center p-8 py-4 lg:p-4 bg-primary-foreground">
-            <div className="flex flex-col w-full max-w-[1120px] items-center py-10">
+          <main className="flex min-h-screen w-full bg-primary-foreground">
+            <Sidebar/>
+            <div className="flex flex-col w-full items-center justify-start ml-[332px]">
+              <div className="flex flex-col w-full max-w-[1120px] p-12">
                 {children}
+              </div>
             </div>
           </main>
         </ThemeProvider>

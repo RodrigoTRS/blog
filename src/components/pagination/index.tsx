@@ -5,13 +5,12 @@ interface PaginationProps {
     basePath: string
     currentPage: number,
     perPage: number,
-    totalCount: number
+    totalPages: number
 }
 
-export function Pagination({ basePath, currentPage, perPage, totalCount }: PaginationProps) {
+export function Pagination({ basePath, currentPage, perPage, totalPages }: PaginationProps) {
 
-    const totalPages = Math.ceil(totalCount/perPage)
-    const isFirstPage = currentPage === Number(1)
+    const isFirstPage = currentPage === 1
     const isLastPage = currentPage === totalPages
 
     return (

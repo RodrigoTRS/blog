@@ -1,21 +1,18 @@
 "use server"
 
 import { api } from "@/lib/axios"
+import { Post } from "@/models/Post"
 
-interface PostResponse {
-    id: string,
-    title: string
-    categories: {
-        title: string,
-        slug: string
-    }[],
-    content: string,
-    slug: string,
-    createdAt: Date,
-    isMain: boolean
+interface GetMainPostResponse {
+    post: Post
 }
 
 export async function getMainPost() {
-    const response = await api.get<PostResponse[]>("/posts?isMain=true")
-    return response.data[0]
+    const response = await api.get<GetMainPostResponse>("/posts/main")
+
+    const {
+        post
+    } = response.data
+
+    return post
 }

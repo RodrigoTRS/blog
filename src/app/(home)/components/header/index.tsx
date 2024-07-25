@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { ModeToggle } from "../theme/mode-toggle";
-import { Logo } from "../logo";
+import { ModeToggle } from "../../../../components/theme/mode-toggle";
+import { Logo } from "../../../../components/logo";
 import { Navmenu } from "../menu/nav-menu";
 import { MobileMenu } from "../menu/mobile-menu";
 import { ContactButton } from "./contact-button";
-import { Dialog } from "../ui/dialog";
+import { Dialog } from "../../../../components/ui/dialog";
 import { ContactModal } from "./contact-modal";
 
 

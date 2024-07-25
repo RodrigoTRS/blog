@@ -1,5 +1,4 @@
-import { Breadcrumbs } from "@/components/bradcrumbs";
-import { Separator } from "@/components/ui/separator";
+import { Breadcrumbs } from "@/app/(home)/components/bradcrumbs";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Loading() {

@@ -1,29 +1,12 @@
-import Image from "next/image";
-import MainImage from "@/../public/main-blog.jpg"
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character";
-import { CategoryBadge } from "@/components/category-badge";
-import clsx from "clsx";
-import { HeadingImage } from "@/components/heading-image";
-
-interface PostProps {
-    id: string,
-    title: string
-    categories: {
-        title: string,
-        slug: string
-    }[],
-    content: string,
-    slug: string,
-    createdAt: Date,
-    isMain: boolean
-}
+import { HeadingImage } from "@/app/(home)/components/heading-image";
+import { Post } from "@/models/Post";
 
 interface PostCardProps {
-    post: PostProps
+    post: Post
 }
 
 export function PostCard({ post }: PostCardProps) {

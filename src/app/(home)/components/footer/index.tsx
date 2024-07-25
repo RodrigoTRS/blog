@@ -1,4 +1,4 @@
-import { Logo } from "../logo";
+import { Logo } from "../../../../components/logo";
 import { Navmenu } from "../menu/nav-menu";
 import { ContactInformation } from "./contact-information";
 import { SocialMediaIcon } from "./social-media-icon";

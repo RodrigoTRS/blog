@@ -2,29 +2,14 @@ import { getPostBySlug } from "@/actions/get-post-by-slug"
 import { Badge } from "@/components/ui/badge";
 import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character";
 import { Separator } from "@/components/ui/separator";
-import { HeadingImage } from "@/components/heading-image";
-import { Breadcrumbs } from "@/components/bradcrumbs";
+import { HeadingImage } from "@/app/(home)/components/heading-image";
+import { Breadcrumbs } from "@/app/(home)/components/bradcrumbs";
 import { Metadata } from "next";
 
 interface PostPageProps {
     params: {
         slug: string
     }
-}
-
-export async function generateMetadata(
-    { params }: PostPageProps
-): Promise<Metadata> {
-    const postSlug = params.slug
-
-    const post = await getPostBySlug({
-        slug: postSlug
-    })
-
-    return {
-        title: uppercaseFirstCharacter(post.title)
-    }
-
 }
 
 export default async function PostPage({ params }: PostPageProps) {

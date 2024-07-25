@@ -1,8 +1,8 @@
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { fetchMenuOptions } from "@/actions/fetch-menu-options";
-import { Button, ButtonProps } from "../ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { Button, ButtonProps } from "../../../../components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../../../../components/ui/dropdown-menu";
 
 export async function MobileMenu(props: ButtonProps) {
     const menuOptions = await fetchMenuOptions();

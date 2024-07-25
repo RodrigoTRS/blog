@@ -1,5 +1,5 @@
 import { ChevronRight } from "lucide-react"
-import { Skeleton } from "../ui/skeleton"
+import { Skeleton } from "../../../../components/ui/skeleton"
 
 interface BreadcrumbsLoadingProps {
     hasSecondStep: boolean,

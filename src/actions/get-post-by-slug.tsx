@@ -1,35 +1,22 @@
 "use server"
 
 import { api } from "@/lib/axios"
+import { Post } from "@/models/Post"
 
-interface PostResponse {
-    id: string,
-    title: string
-    categories: {
-        title: string,
-        slug: string
-    }[],
-    content: string,
-    slug: string,
-    createdAt: Date,
-    isMain: boolean
-}
-
-interface GetPostByIdRequest {
+interface GetPostBySlugRequest {
     slug: string,
 }
 
-export async function getPostBySlug({ slug }: GetPostByIdRequest) {
-    try {
-        const response = await api.get<PostResponse[]>(`/posts?slug=${slug}`)
+interface GetPostBySlugResponse {
+    post: Post,
+}
 
-        if (response.data.length === 0) {
-            throw new Error("Post doesn't exist.")
-        }
+export async function getPostBySlug({ slug }: GetPostBySlugRequest) {
+    const response = await api.get<GetPostBySlugResponse>(`/posts/slug/${slug}`)
 
-        return response.data[0]
-    } catch (error) {
-        throw error
-    }
+    const {
+        post
+    } = response.data
 
+    return post
 }

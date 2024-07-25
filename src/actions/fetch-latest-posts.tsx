@@ -1,31 +1,39 @@
 "use server"
 
 import { api } from "@/lib/axios"
+import { Post } from "@/models/Post"
 
-interface PostResponse {
-    id: string,
-    title: string
-    categories: {
-        title: string,
-        slug: string
-    }[],
-    content: string,
-    slug: string,
-    createdAt: Date,
-    isMain: boolean
-}
 
 interface FetchLatestPostsRequest {
-    page: number,
+    page: number
     perPage: number
 }
 
+
+interface FetchLatestPostsResponse {
+    page: number
+    perPage: number
+    totalPages: number
+    posts: Post[]
+}
+
 export async function fetchLatestPosts({ page, perPage }: FetchLatestPostsRequest) {
-    const response = await api.get<PostResponse[]>(`/posts?_sort=createdAt&_order=asc&_page=${page}&_limit=${perPage}`)
+    const response = await api.get<FetchLatestPostsResponse>("/posts", {
+        params: {
+            page,
+            perPage
+        }
+    })
+
+    const {
+        posts,
+        totalPages
+    } = response.data
+
     return {
         page,
         perPage,
-        totalCount: 10,
-        posts: response.data
+        totalPages,
+        posts
     }
 }

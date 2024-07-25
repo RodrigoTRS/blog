@@ -1,7 +1,7 @@
-import { Button } from "../ui/button";
-import { SimpleIcon } from "simple-icons";
-import Image from "next/image";
 import Link from "next/link";
+
+import { Button } from "../../../../components/ui/button";
+import { SimpleIcon } from "simple-icons";
 
 interface SocialMediaIconProps {
     icon: SimpleIcon,

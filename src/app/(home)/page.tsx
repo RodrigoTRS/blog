@@ -4,15 +4,21 @@ import { Separator } from "@/components/ui/separator";
 import { Sidebar } from "./components/sidebar";
 import { fetchLatestPosts } from "@/actions/fetch-latest-posts";
 import { Pagination } from "@/components/pagination";
-import { Breadcrumbs } from "@/components/bradcrumbs";
+import { Breadcrumbs } from "@/app/(home)/components/bradcrumbs";
 
 
 
 export default async function Home() {
 
-  const { posts, perPage, totalCount } = await fetchLatestPosts({
-    page: 1, perPage: 8
+  const numberOfPosts = 8
+
+  const {
+    posts,
+    totalPages
+  } = await fetchLatestPosts({
+    page: 1, perPage: numberOfPosts
   })
+
 
   return (
     <section className="w-full grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -39,8 +45,8 @@ export default async function Home() {
         <Pagination
           basePath="/posts"
           currentPage={1}
-          perPage={perPage}
-          totalCount={totalCount}
+          perPage={numberOfPosts}
+          totalPages={totalPages}
         />
       </div>
 

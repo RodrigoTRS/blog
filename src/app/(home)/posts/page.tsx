@@ -1,7 +1,7 @@
 import { fetchLatestPosts } from "@/actions/fetch-latest-posts";
-import { PostEntry } from "./components/post-entry";
+import { PostEntry } from "../components/post-entry";
 import { Pagination } from "@/components/pagination";
-import { Breadcrumbs } from "@/components/bradcrumbs";
+import { Breadcrumbs } from "@/app/(home)/components/bradcrumbs";
 import { Metadata } from "next";
 
 interface PostsPageProps {
@@ -12,16 +12,17 @@ interface PostsPageProps {
 
 export const metadata: Metadata = {
     title: "Posts | Personal Blog",
-  };
-  
-
+};
 
 export default async function PostsPage({ searchParams }: PostsPageProps) {
+
+    const numberOfPosts = 5
+
     const currentPage = Number(searchParams?.page ?? 1)
 
-    const { posts, perPage, totalCount } = await fetchLatestPosts({
+    const { posts, totalPages } = await fetchLatestPosts({
         page: currentPage,
-        perPage: 5
+        perPage: numberOfPosts
     })
 
     return (
@@ -32,8 +33,8 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
                 {posts.map((post, index) => {
                     return (
                         <PostEntry
-                        post={post}
-                        key={post.id}
+                            post={post}
+                            key={post.id}
                         />
                     )})
                 }
@@ -42,8 +43,8 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
             <Pagination
                 basePath="/posts"
                 currentPage={currentPage}
-                perPage={perPage}
-                totalCount={totalCount}
+                perPage={numberOfPosts}
+                totalPages={totalPages}
             />
 
         </section>

@@ -1,14 +1,11 @@
 import Image from "next/image";
 import MainImage from "@/../public/main-blog.jpg"
-import { CategoryBadge } from "./category-badge";
+import { CategoryBadge } from "../../../components/category-badge";
+import { Category } from "@/models/Category";
 
-interface CategoryProps {
-    title: string,
-    slug: string
-}
 
 interface HeadingImageProps {
-    categories: CategoryProps[],
+    categories: Category[],
 }
 
 export function HeadingImage({ categories }: HeadingImageProps) {

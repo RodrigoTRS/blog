@@ -4,23 +4,10 @@ import { Card } from "@/components/ui/card";
 import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character";
 import Image from "next/image";
 import MainImage from "@/../public/main-blog.jpg"
-
-
-interface PostProps {
-    id: string,
-    title: string
-    categories: {
-        title: string,
-        slug: string
-    }[],
-    content: string,
-    slug: string,
-    createdAt: Date,
-    isMain: boolean
-}
+import { Post } from "@/models/Post";
 
 interface PostEntryProps {
-    post: PostProps
+    post: Post
 }
 
 export function PostEntry({ post }: PostEntryProps) {
@@ -68,7 +55,6 @@ export function PostEntry({ post }: PostEntryProps) {
                         </Button>
                     </div>
                 </div>
-                
             </div>
         </Card>
     )

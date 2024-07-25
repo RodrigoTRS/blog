@@ -1,7 +1,7 @@
 "use client"
 
 import { ChevronRight, House } from "lucide-react"
-import { Button } from "../ui/button"
+import { Button } from "../../../../components/ui/button"
 import { usePathname, useRouter } from "next/navigation"
 import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character";
 import { BreadcrumbsLoading } from "./loadings";
@@ -68,7 +68,7 @@ export function Breadcrumbs({ isLoading = false }: BreadcrumbsProps) {
                         onClick={() => handleNavigate(`/${pathSteps[2]}`)}
                         disabled
                     >
-                        <span>{`${document.title}`}</span>
+                        <span>Current post</span>
                     </Button>
                 </>
             )}

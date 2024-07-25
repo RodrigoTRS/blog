@@ -1,10 +1,8 @@
 import { fetchCategories } from "@/actions/fetch-categories"
 import { CategoryBadge } from "@/components/category-badge"
-import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
 
 export async function Categories() {
-    const categories = await fetchCategories()
+    const { categories } = await fetchCategories()
 
     return (
         <div className="flex flex-col gap-6">
