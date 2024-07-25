@@ -10,7 +10,7 @@ interface NavmenuProps {
 }
 
 export async function Navmenu({ orientation, onlyDesktop = false, horizontalAlign = "left" }: NavmenuProps) {
-    const menuOptions = await fetchMenuOptions();
+    const menuOptions = await fetchMenuOptions()
 
     return (
         <nav className={clsx(

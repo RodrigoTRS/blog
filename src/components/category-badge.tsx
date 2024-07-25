@@ -9,7 +9,7 @@ interface CategoryButtonProps extends BadgeProps{
 
 export function CategoryBadge(props: CategoryButtonProps) {
     return (
-        <Badge {...props} className="text-white bg-primary-foreground border">
+        <Badge {...props} className="text-white bg-primary border">
             <Link href={props.slug}>
                 {uppercaseFirstCharacter(props.title)}
             </Link>

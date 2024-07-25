@@ -27,12 +27,12 @@ export function SidebarLoading() {
 
 
                 <div className="flex flex-wrap gap-2">
-                    <Skeleton className="w-[60px] h-[15px] rounded-md bg-stone-200 dark:bg-stone-700"/>
-                    <Skeleton className="w-[80px] h-[15px] rounded-md bg-stone-200 dark:bg-stone-700"/>
-                    <Skeleton className="w-[40px] h-[15px] rounded-md bg-stone-200 dark:bg-stone-700"/>
-                    <Skeleton className="w-[120px] h-[15px] rounded-md bg-stone-200 dark:bg-stone-700"/>
-                    <Skeleton className="w-[140px] h-[15px] rounded-md bg-stone-200 dark:bg-stone-700"/>
-                    <Skeleton className="w-[60px] h-[15px] rounded-md bg-stone-200 dark:bg-stone-700"/>
+                    <Skeleton className="w-[60px] h-[15px] rounded-md"/>
+                    <Skeleton className="w-[80px] h-[15px] rounded-md"/>
+                    <Skeleton className="w-[40px] h-[15px] rounded-md"/>
+                    <Skeleton className="w-[120px] h-[15px] rounded-md"/>
+                    <Skeleton className="w-[140px] h-[15px] rounded-md"/>
+                    <Skeleton className="w-[60px] h-[15px] rounded-md"/>
                 </div>
             </div>
         </aside>

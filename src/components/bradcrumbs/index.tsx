@@ -4,9 +4,13 @@ import { ChevronRight, House } from "lucide-react"
 import { Button } from "../ui/button"
 import { usePathname, useRouter } from "next/navigation"
 import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character";
-import { title } from "process";
+import { BreadcrumbsLoading } from "./loadings";
 
-export function Breadcrumbs() {
+interface BreadcrumbsProps {
+    isLoading?: boolean
+}
+
+export function Breadcrumbs({ isLoading = false }: BreadcrumbsProps) {
 
     const pathname = usePathname();
     const router = useRouter()
@@ -17,10 +21,17 @@ export function Breadcrumbs() {
         router.push(path)
     }
 
-    console.log(pathSteps)
-
     const hasSecondStep = pathSteps[1].length > 0
     const hasThirdStep = pathSteps.length === 3
+
+    if (isLoading) {
+        return (
+            <BreadcrumbsLoading
+                hasSecondStep={hasSecondStep}
+                hasThirdStep={hasThirdStep}
+            />
+        )
+    }
 
 
     return (
@@ -40,6 +51,7 @@ export function Breadcrumbs() {
                         size="default"
                         variant="outline"
                         onClick={() => handleNavigate(`/${pathSteps[1]}`)}
+                        disabled={!hasThirdStep}
                     >
                         <span>{`${uppercaseFirstCharacter(pathSteps[1])}`}</span>
                     </Button>

@@ -5,7 +5,7 @@
 
 @layer base {
   * {
-    @apply dark:border-stone-800
+    @apply dark:border-slate-800
   }
 
   :root {
