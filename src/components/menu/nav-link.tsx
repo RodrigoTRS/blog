@@ -19,7 +19,7 @@ export function Navlink(props: NavlinkProps) {
             {...props}
             className={clsx(
                 "text-foreground/80 hover:text-foreground",
-                isActive && "text-rose-500 font-bold"
+                isActive && "text-primary font-bold"
             )}
         >
             {props.children}

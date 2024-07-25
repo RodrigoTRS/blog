@@ -28,9 +28,9 @@ export function PostEntry({ post }: PostEntryProps) {
     const postLink = `posts/${post.slug}`
 
     return (
-        <Card className="flex flex-row gap-2 max-w-[720px]" >
+        <Card className="flex flex-col lg:flex-row gap-2 max-w-[720px]" >
 
-            <div className="w-[300px] h-[240px]">
+            <div className="w-full lg:w-[300px] h-[240px]">
 
                 <Image
                     src={MainImage}

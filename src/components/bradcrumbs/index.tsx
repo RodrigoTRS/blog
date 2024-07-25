@@ -17,7 +17,9 @@ export function Breadcrumbs() {
         router.push(path)
     }
 
-    const hasSecondStep = pathSteps.length > 1
+    console.log(pathSteps)
+
+    const hasSecondStep = pathSteps[1].length > 0
     const hasThirdStep = pathSteps.length === 3
 
 
