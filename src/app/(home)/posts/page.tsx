@@ -29,7 +29,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
         <section className="flex flex-col items-start w-full max-w-[720px]">
             <Breadcrumbs />
 
-            <div className="flex flex-col gap-6 mb-6">
+            <div className="flex w-full flex-col gap-6 mb-6">
                 {posts.map((post, index) => {
                     return (
                         <PostEntry

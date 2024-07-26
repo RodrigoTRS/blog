@@ -5,15 +5,18 @@ import { Pencil, Trash } from "lucide-react"
 import { TableCell, TableRow } from "@/components/ui/table"
 import { Post } from "@/models/Post"
 import { uppercaseFirstCharacter } from "@/utils/uppercase-first-character"
-import { DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogTrigger } from "@/components/ui/dialog"
+import { ManagePostModal } from "../manage-post/manage-post-modal"
+import { Category } from "@/models/Category"
+import { DeletePostModal } from "../manage-post/delete-post-modal"
 
 
 interface TableRowProps {
     post: Post
+    categories: Category[]
 }
 
-export function PostTableRow({ post }: TableRowProps) {
-
+export function PostTableRow({ post, categories }: TableRowProps) {
 
     return (
         <TableRow>
@@ -21,26 +24,38 @@ export function PostTableRow({ post }: TableRowProps) {
             <TableCell
                 className="flex items-center justify-end gap-2"
                 >
-
-                <DialogTrigger asChild>
-                    <Button
-                        variant="outline"
-                        className="h-8 w-8 p-2"
-                        >
-                        <Pencil
-                            className="w-4 h-4"
-                            />
-                    </Button>
-                </DialogTrigger>
-
-                <Button
-                    variant="outline"
-                    className="h-8 w-8 p-2"
-                    >
-                    <Trash
-                        className="w-4 h-4"
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button
+                            variant="outline"
+                            className="h-8 w-8 p-2"
+                            >
+                            <Pencil
+                                className="w-4 h-4"
+                                />
+                        </Button>
+                    </DialogTrigger>
+                    <ManagePostModal
+                        categories={categories}
+                        post={post}
                         />
-                </Button>
+                </Dialog>
+                
+                <Dialog>
+                    <DialogTrigger>
+                        <Button
+                            variant="outline"
+                            className="h-8 w-8 p-2"
+                            >
+                            <Trash
+                                className="w-4 h-4"
+                                />
+                        </Button>
+                    </DialogTrigger>
+                    <DeletePostModal
+                        post={post}
+                        />
+                </Dialog>
             </TableCell>
         </TableRow>
     )

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { DialogTrigger } from "@/components/ui/dialog";
 
-export function ManagePostButton() {
+export function CreatePostButton() {
     return (
         <DialogTrigger asChild>
             <Button>

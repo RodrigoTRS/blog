@@ -4,7 +4,7 @@ import { Pagination } from "@/components/pagination"
 import { PageHeader } from "../components/page-header"
 import { PostTable } from "../components/post-table/post-table"
 import { Dialog } from "@/components/ui/dialog"
-import { ManagePostButton } from "../components/manage-post/manage-post-button"
+import { CreatePostButton } from "../components/manage-post/create-post-button"
 import { ManagePostModal } from "../components/manage-post/manage-post-modal"
 import { fetchCategories } from "@/actions/fetch-categories"
 
@@ -20,7 +20,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
 
     const currentPage = Number(searchParams?.page ?? 1)
 
-    const { posts, perPage, totalPages } = await fetchLatestPosts({
+    const { posts, totalPages } = await fetchLatestPosts({
         page: currentPage,
         perPage: numberOfPosts
     })
@@ -30,16 +30,17 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
     return (
         <div className="flex flex-col w-full gap-6">
             
-            <Dialog>
                 <PageHeader>
                     <PageTitle>Blog posts</PageTitle>
-                    <ManagePostButton /> 
+                    <Dialog>
+                        <CreatePostButton /> 
+                        <ManagePostModal
+                            categories={categories}
+                            />
+                    </Dialog>
                 </PageHeader>
 
                 <PostTable posts={posts}/>
-                
-                <ManagePostModal categories={categories} />
-            </Dialog>
             
             <Pagination
                 basePath="/admin/posts"

@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { createPost } from "@/actions/create-post";
 import { useRouter } from "next/navigation";
 import { Post } from "@/models/Post";
+import { updatePost } from "@/actions/update-post";
 
 const createPostModalSchema = z.object({
     title: z.string(),
@@ -25,10 +26,11 @@ const createPostModalSchema = z.object({
 type CreatePostModalData = z.infer<typeof createPostModalSchema>
 
 interface CreatePostModalProps {
+    post?: Post | null
     categories: Category[]
 }
 
-export function ManagePostModal({ categories }: CreatePostModalProps) {
+export function ManagePostModal({ categories, post = null }: CreatePostModalProps) {
 
     const router = useRouter()
 
@@ -72,11 +74,21 @@ export function ManagePostModal({ categories }: CreatePostModalProps) {
         categories,
         content
     }: CreatePostModalData) {
-        await createPost({
-            title,
-            categories,
-            content
-        })
+
+        if (post === null) {
+            await createPost({
+                title,
+                categories,
+                content
+            })
+        } else {
+            await updatePost({
+                id: post!.id,
+                title,
+                categories,
+                content
+            })
+        }
         router.refresh()
         formReset()
     }
@@ -90,6 +102,11 @@ export function ManagePostModal({ categories }: CreatePostModalProps) {
         setValue("categories", selectedCategories)
     }, [selectedCategories, setValue])
 
+    useEffect(() => {
+        if (post != null) {
+            fillForm(post)
+        }
+    }, [post])
 
     return (
         <DialogContent>

@@ -2,13 +2,16 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import { Post } from "@/models/Post"
 import { PostTableRow } from "./post-table-row"
 import { Card } from "@/components/ui/card"
+import { fetchCategories } from "@/actions/fetch-categories"
 
 
 interface PostTableProps {
     posts: Post[]
 }
 
-export function PostTable({ posts }: PostTableProps) {
+export async function PostTable({ posts }: PostTableProps) {
+    const { categories } = await fetchCategories()
+
     return (
         <Card>
             <Table>
@@ -26,7 +29,11 @@ export function PostTable({ posts }: PostTableProps) {
                 <TableBody>
                     {posts.map((post) => {
                         return (
-                            <PostTableRow post={post} key={post.id}/>
+                            <PostTableRow
+                                post={post}
+                                key={post.id}
+                                categories={categories}
+                                />
                         )
                     })}
                 </TableBody>

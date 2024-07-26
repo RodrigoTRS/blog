@@ -15,7 +15,7 @@ export function PostEntry({ post }: PostEntryProps) {
     const postLink = `posts/${post.slug}`
 
     return (
-        <Card className="flex flex-col lg:flex-row gap-2 max-w-[720px]" >
+        <Card className="flex flex-col w-full lg:flex-row gap-2 max-w-[720px]" >
 
             <div className="w-full lg:w-[300px] h-[240px]">
 
@@ -31,7 +31,7 @@ export function PostEntry({ post }: PostEntryProps) {
             </div>
 
             <div className="w-full flex flex-col justify-between p-6">
-                <div className="flex flex-col gap-2">
+                <div className="w-full flex flex-col gap-2">
                     <Link href={postLink} className="hover:text-primary ">
                         <h4 className="text-xl font-medium leading-normal">
                             {uppercaseFirstCharacter(post.title)}
