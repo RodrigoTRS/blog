@@ -10,7 +10,7 @@ interface HeadingImageProps {
 
 export function HeadingImage({ categories }: HeadingImageProps) {
     return (
-        <div className="relative h-full">
+        <div className="relative">
             <div className="flex items-center justify-center gap-2 select-none absolute left-4 top-4 z-10">
                 {(categories.map(({ title, slug}) => {
                     return (

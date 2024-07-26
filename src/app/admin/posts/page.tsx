@@ -1,10 +1,12 @@
 import { fetchLatestPosts } from "@/actions/fetch-latest-posts"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { PageTitle } from "../components/page-title"
 import { Pagination } from "@/components/pagination"
-import { PostTableRow } from "../components/post-table-row"
 import { PageHeader } from "../components/page-header"
-import { Button } from "@/components/ui/button"
+import { PostTable } from "../components/post-table/post-table"
+import { Dialog } from "@/components/ui/dialog"
+import { ManagePostButton } from "../components/manage-post/manage-post-button"
+import { ManagePostModal } from "../components/manage-post/manage-post-modal"
+import { fetchCategories } from "@/actions/fetch-categories"
 
 interface PostsPageProps {
     searchParams?: { 
@@ -13,50 +15,37 @@ interface PostsPageProps {
 }
 
 export default async function PostsPage({ searchParams }: PostsPageProps) {
+
+    const numberOfPosts = 10
+
     const currentPage = Number(searchParams?.page ?? 1)
 
-    const { posts, perPage, totalCount } = await fetchLatestPosts({
+    const { posts, perPage, totalPages } = await fetchLatestPosts({
         page: currentPage,
-        perPage: 5
+        perPage: numberOfPosts
     })
 
+    const { categories } = await fetchCategories()
+
     return (
-        <div className="flex flex-col w-full gap-8">
-            <PageHeader>
-                <PageTitle>Blog posts</PageTitle>
-                <Button>
-                    Create new post
-                </Button>
-            </PageHeader>
+        <div className="flex flex-col w-full gap-6">
+            
+            <Dialog>
+                <PageHeader>
+                    <PageTitle>Blog posts</PageTitle>
+                    <ManagePostButton /> 
+                </PageHeader>
 
-            <Table>
-
-                <TableHeader>
-                    <TableRow>
-                        <TableHead>
-                            Title
-                        </TableHead>
-                        <TableHead className="flex items-center justify-end">
-                            Actions
-                        </TableHead>
-                    </TableRow>
-                </TableHeader>
-
-                <TableBody>
-                    {posts.map((post) => {
-                        return (
-                            <PostTableRow post={post} key={post.id}/>
-                        )
-                    })}
-                </TableBody>
-
-            </Table>
-
+                <PostTable posts={posts}/>
+                
+                <ManagePostModal categories={categories} />
+            </Dialog>
+            
             <Pagination
                 basePath="/admin/posts"
                 currentPage={currentPage}
-                perPage={perPage}
-                totalCount={totalCount}
+                perPage={numberOfPosts}
+                totalPages={totalPages}
             />
         </div>
     )

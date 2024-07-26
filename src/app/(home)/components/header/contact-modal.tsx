@@ -84,14 +84,19 @@ export function ContactModal() {
                 </div>
 
                 <DialogFooter className="mt-4">
+                    
                     <DialogTrigger asChild>
                         <Button variant="outline">
                             Cancel
                         </Button>
                     </DialogTrigger>
-                    <Button type="submit" disabled={isSubmitting}>
-                        Submit
-                    </Button>
+
+                    <DialogTrigger asChild>
+                        <Button type="submit" disabled={isSubmitting}>
+                            Submit
+                        </Button>
+                    </DialogTrigger>
+
                 </DialogFooter>
             </form>
         </DialogContent>

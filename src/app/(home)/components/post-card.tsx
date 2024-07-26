@@ -10,6 +10,7 @@ interface PostCardProps {
 }
 
 export function PostCard({ post }: PostCardProps) {
+    const cutomTitle = post.title.substring(0,72) + "..."
     const customExcerpt = post.content.substring(0, 97) + "..."
     const postLink = `posts/${post.slug}`
 
@@ -20,11 +21,11 @@ export function PostCard({ post }: PostCardProps) {
                 categories={post.categories}
             />
 
-            <div className="w-full flex flex-col justify-between p-6 min-h-[260px]">
+            <div className="w-full flex flex-col justify-between p-6 h-[320px]">
                 <div className="flex flex-col gap-2">
                     <Link href={postLink} className="hover:text-primary ">
                         <h4 className="text-xl font-medium leading-normal">
-                            {uppercaseFirstCharacter(post.title)}
+                            {uppercaseFirstCharacter(cutomTitle)}
                         </h4>
                     </Link>
 

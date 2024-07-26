@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { SidebarFooter } from "./sidebar-footer";
 import { SidebarHeader } from "./sidebar-header";
+import { ModeToggle } from "@/components/theme/mode-toggle";
 
 export function Sidebar() {
     return (
@@ -51,8 +52,9 @@ export function Sidebar() {
                     variant="outline"
                     size="icon"
                     >
-                    <Settings className="w-5 h-5 text-primary"/>
+                    <Settings className="w-5 h-5"/>
                 </Button>
+                <ModeToggle />
             </SidebarFooter>
         </aside>
     )

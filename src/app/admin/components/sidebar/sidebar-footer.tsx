@@ -6,7 +6,7 @@ interface SidebarFooterProps {
 
 export function SidebarFooter({ children }: SidebarFooterProps) {
     return (
-        <footer className="flex items-center w-full p-4 border-t">
+        <footer className="flex items-center justify-between w-full p-4 border-t">
             {children}
         </footer>
     )

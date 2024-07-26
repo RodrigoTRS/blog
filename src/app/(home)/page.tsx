@@ -6,17 +6,24 @@ import { fetchLatestPosts } from "@/actions/fetch-latest-posts";
 import { Pagination } from "@/components/pagination";
 import { Breadcrumbs } from "@/app/(home)/components/bradcrumbs";
 
+interface HomePageProps {
+  searchParams?: { 
+      page: number
+  }
+}
 
+export default async function Home({ searchParams }: HomePageProps) {
 
-export default async function Home() {
+  const numberOfPosts = 6
 
-  const numberOfPosts = 8
+  const currentPage = Number(searchParams?.page ?? 1)
 
   const {
     posts,
     totalPages
   } = await fetchLatestPosts({
-    page: 1, perPage: numberOfPosts
+    page: currentPage,
+    perPage: numberOfPosts
   })
 
 
@@ -30,7 +37,7 @@ export default async function Home() {
 
         <Separator className="my-6"/>
 
-        <div className="w-full max-w-[720px] grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="w-full max-w-[720px] grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {
             posts.map((post) => {
               return (
@@ -42,9 +49,10 @@ export default async function Home() {
             })
           }
         </div>
+
         <Pagination
-          basePath="/posts"
-          currentPage={1}
+          basePath="/"
+          currentPage={currentPage}
           perPage={numberOfPosts}
           totalPages={totalPages}
         />

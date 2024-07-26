@@ -14,7 +14,7 @@ export function Pagination({ basePath, currentPage, perPage, totalPages }: Pagin
     const isLastPage = currentPage === totalPages
 
     return (
-        <div className="flex w-full justify-between items-center mt-6 gap-2">
+        <div className="flex w-full justify-between items-center gap-2">
             <span>Página {currentPage} de {totalPages} </span>
 
             <div className="flex items-center gap-2">
