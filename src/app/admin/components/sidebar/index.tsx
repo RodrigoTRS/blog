@@ -1,12 +1,13 @@
+import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { SidebarLink } from "./sidebar-link";
 import { AlignJustify, BookMarked, CircleGauge, FileChartColumnIncreasing, Settings } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { Separator } from "@/components/ui/separator";
 import { SidebarFooter } from "./sidebar-footer";
 import { SidebarHeader } from "./sidebar-header";
 import { ModeToggle } from "@/components/theme/mode-toggle";
+import { SettingsButton } from "../settings/settings-button";
+import { Dialog } from "@/components/ui/dialog";
+import { SettingsModal } from "../settings/settings-modal";
 
 export function Sidebar() {
     return (
@@ -48,12 +49,10 @@ export function Sidebar() {
 
 
             <SidebarFooter>
-                <Button
-                    variant="outline"
-                    size="icon"
-                    >
-                    <Settings className="w-5 h-5"/>
-                </Button>
+                <Dialog>
+                    <SettingsButton />
+                    <SettingsModal />
+                </Dialog>
                 <ModeToggle />
             </SidebarFooter>
         </aside>

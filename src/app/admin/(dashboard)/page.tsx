@@ -1,5 +1,5 @@
-import { BlogPostChart } from "./components/dashboard/blog-post-chart";
-import { PageTitle } from "./components/page-title";
+import { BlogPostChart } from "../components/dashboard/blog-post-chart";
+import { PageTitle } from "../components/page-title";
 
 
 export default async function Admin() {
